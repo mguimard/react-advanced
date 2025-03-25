@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useCallback, useMemo, useState } from "react"
 import { initialData } from "./data"
 import { Todo } from "./Todo"
 
@@ -13,25 +13,21 @@ export const Todos = () => {
     const [todos, setTodos] = useState(initialData)
     const [filter, setFilter] = useState(FilterState.ALL)
 
-    const filteredList = todos.filter((todo) => {
+    const filteredList = useMemo(() => todos.filter((todo) => {
         console.log('filteredList')
-        if (filter === FilterState.ALL) return true;
-        return filter === FilterState.COMPLETED && todo.completed ||
+        return filter === FilterState.ALL ||
+            filter === FilterState.COMPLETED && todo.completed ||
             filter === FilterState.TODO && !todo.completed
-    })
+    }), [todos, filter])
 
-    const handleChange = (todo, e) => {
-        console.log(e.target.checked)
-
-        let copy = todos.map(t => {
-            if (t === todo) {
-                t.completed = e.target.checked
-            }
-            return t;
+    const handleChange = useCallback((todoId, completed) => {
+        setTodos((currentTodos) => {
+            let copy = [...currentTodos]
+            let todo = copy.find(t => t.id === todoId)
+            todo.completed = completed
+            return copy;
         })
-
-        setTodos(copy)
-    }
+    }, [])
 
     const handleFilter = (filter) => {
         return () => setFilter(filter)
@@ -44,7 +40,12 @@ export const Todos = () => {
             <button onClick={handleFilter(FilterState.TODO)}>Todo</button>
             <ul>
                 {filteredList.map((todo) => {
-                    return <li key={todo.id}><Todo {...todo} onChange={(e) => handleChange(todo, e)} /></li>
+                    return <Todo
+                        key={todo.id}
+                        todoId={todo.id}
+                        completed={todo.completed}
+                        title={todo.title}
+                        onChange={handleChange} />
                 })}
             </ul>
         </>
