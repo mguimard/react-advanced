@@ -57,11 +57,32 @@ npm create vite@latest my-react-ts-app -- --template react-ts
 
 ## Création d'une application counter
 
-Ecrire le code jsx (ou tsx) nécessaire pour afficher 2 boutons + un paragraphe :
+Ecrire le code jsx (ou tsx) nécessaire pour afficher 3 boutons + un paragraphe :
 
 - bouton décrémenter
 - bouton incrémenter
+- bouton reset
 - paragraphe affichant la valeur du compteur
+
+## Création d'une application todolist
+
+Ecrire le code jsx (ou tsx) nécessaire pour afficher une liste de todos
+
+Données en dur :
+
+```js
+const todos = [
+  { title: "Do this", completed: false },
+  { title: "Do that", completed: true },
+  { title: "Do this again", completed: false },
+];
+```
+
+Nous souhaitons avoir un sélecteur pour afficher seulement les todos complétés, les non complétés, et tous.
+
+Contrainte technique, créer deux composants, un pour la liste, un pour chaque todo.
+
+Chaque todo peut être marqué comme "complété" à l'aide d'une checkbox
 
 ## Découverte des dev tools
 
