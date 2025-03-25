@@ -1,0 +1,18 @@
+{
+  "name": "mfp",
+  "version": "1.0.0",
+  "license": "MIT",
+  "scripts": {
+    "build": "yarn workspaces run build",
+    "serve": "wsrun --parallel serve",
+    "start": "concurrently \"wsrun --parallel start\" \"wsrun --parallel serve\""
+  },
+  "workspaces": [
+    "apps/*"
+  ],
+  "dependencies": {
+    "concurrently": "^9.1.2",
+    "wsrun": "^5.2.4",
+    "yarn": "^1.22.22"
+  }
+}

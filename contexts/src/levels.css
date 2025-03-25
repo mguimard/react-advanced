@@ -1,0 +1,15 @@
+.level1,
+.level2,
+.level3 {
+  padding: 12px;
+  margin: 12px;
+}
+.level1 {
+  border: 1px solid green;
+}
+.level2 {
+  border: 1px solid red;
+}
+.level3 {
+  border: 1px solid blue;
+}
