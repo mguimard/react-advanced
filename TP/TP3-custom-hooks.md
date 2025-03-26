@@ -12,7 +12,7 @@ Chaque hook doit être dans son propre fichier.
 
 Ecrire un custom hook nommé useCycler, qui prend en paramètre une liste de valeurs, et expose 3 sorties :
 
-- la liste
+- la valeur courante
 - une fonction "next"
 - une fonction "previous"
 
