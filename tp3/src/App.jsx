@@ -1,42 +1,11 @@
-import React, { useCallback, useEffect, useReducer, useState } from 'react';
+import React, { useReducer } from 'react';
 import capitalizeReducer from './capitalize-reducer';
 import useArray from './use-array';
 import useMousePosition from './use-mouse-position';
 import useOnlineState from './use-online-state';
 import useRandom from './use-random';
+import useTimer from './use-timer';
 import useCycler from './user-cycler';
-
-function useTimer(timeout = 1000, autostart = false) {
-
-  let [started, setStarted] = useState(autostart);
-  let [count, setcount] = useState(0)
-  let [intervalRef, setIntervalRef] = useState(null)
-
-  let clear = useCallback(() => clearInterval(intervalRef), [intervalRef])
-
-  useEffect(() => {
-    console.log('use effect', started)
-    if (started) {
-
-      let i = setInterval(() => {
-        setcount((c) => { return c + 1 })
-      }, timeout)
-
-      setIntervalRef(() => { return i })
-    }
-    else {
-      clear()
-    }
-
-    return () => {
-      console.log('clean up')
-      clear()
-    }
-
-  }, [started, timeout, clear])
-
-  return [count, () => setStarted(false), () => setStarted(true)];
-}
 
 function App() {
 
@@ -45,15 +14,15 @@ function App() {
   let isOnline = useOnlineState()
   let { x, y } = useMousePosition()
   let [users, addUser, clearUsers] = useArray(['alice', 'bob'])
+  let [timer, stopTimer, startTimer] = useTimer(10)
   const [text, dispatch] = useReducer(capitalizeReducer, '')
-
-  // let [timer, stopTimer, startTimer] = useTimer()
-  /* <button onClick={startTimer}>Start</button>
-       <p>{timer}</p>
-       <button onClick={stopTimer}>Stop</button> */
 
   return (
     <>
+      <button onClick={startTimer}>Start</button><button onClick={stopTimer}>Stop</button>
+      <p>{timer}</p>
+
+      <hr />
       <input type="text" value={text} onChange={(e) => dispatch(e.target.value)} />
       <p>{text}</p>
       <hr />
