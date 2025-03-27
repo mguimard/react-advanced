@@ -73,7 +73,7 @@ Ce serveur écoute sur localhost:3001 et vous renvoie un token si vous faites un
 
 - Créer un contexte pour avoir accès à une variable "isAuthed" et une méthode setAuthToken.
 - Ajouter un bouton "login" dans le menu de gauche. Lors d'un click sur le bouton, récupérer un token depuis le serveur. Appeler setAuthToken(tokenRecupéré) lors de la récupération du token.
-- Ajouter un bouton "logout" dans le menu de gauche. Lors d'un click sur le bouton, récupérer un token depuis le serveur. Appeler setAuthToken(null).
+- Ajouter un bouton "logout" dans le menu de gauche. Lors d'un click sur le bouton, appeler /logout, puis supprimer le token dans le contexte : appeler setAuthToken(null).
 - Utiliser isAuthed pour afficher ou cacher les controles des LEDs et employés.
 
 ## Stockage du token
