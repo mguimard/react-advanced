@@ -6,9 +6,11 @@ const LoginPage = () => {
 
   const login = async (username, password) => {
     let res = await fetch("http://localhost:3001/login", { method: "POST" });
-    let token = await res.text();
+    let { authToken: token } = await res.json();
     console.log("Got token", token);
     setAuth({ user: { username }, token });
+    localStorage.token = token
+    localStorage.username = username
   };
 
   return (

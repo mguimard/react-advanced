@@ -10,6 +10,8 @@ const getLedColor = (status, state) => {
         case 'busy': return 'red';
         case 'offline': return 'gray';
     }
+
+    return 'chucknorris';
 }
 
 const UserLED = memo(({ status, state }) => {

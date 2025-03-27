@@ -18,8 +18,8 @@ app.listen(port, () => {
 
 app.post("/login", function (req, res) {
   console.log(req);
-  var token = jwt.sign({ foo: "bar" }, "secret");
-  res.send(token);
+  var token = jwt.sign({ foo: "bar", user: 'alice', roles: ['admin'] }, "secret");
+  res.send({success:true, authToken: token});
 });
 
 app.get("/protected", expressjwt({ secret: "secret", algorithms: ["HS256"] }), function (req, res) {

@@ -1,8 +1,8 @@
 export const leds = [
-    {id: 0, state: true,  color: 'black'},
-    {id: 1, state: false, color: '#FF0000'},
-    {id: 2, state: true, color: 'rgb(0,255,0)'},
-    {id: 3, state: false, color: '#chucknorris'}
+    {id: 0, state: true},
+    {id: 1, state: false},
+    {id: 2, state: true},
+    {id: 3, state: false}
 ]
 
 export const users = [

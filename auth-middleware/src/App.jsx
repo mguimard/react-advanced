@@ -4,8 +4,9 @@ import LoginForm from "./LoginForm";
 import Page from "./Page";
 
 const initialState = {
-  token: null,
-  user: null,
+  token: localStorage.token || null,
+  user: localStorage.username ? { username: localStorage.username } : null,
+  pizzas: []
 };
 
 function App() {
@@ -13,8 +14,10 @@ function App() {
 
   return (
     <>
-      <AuthContext.Provider value={{ auth, setAuth }}>
+      <AuthContext.Provider value={{ auth, setAuth, meteo: 'soleil' }}>
+
         {auth.user ? <Page /> : <LoginForm />}
+
       </AuthContext.Provider>
     </>
   );
