@@ -1,7 +1,7 @@
 import { memo } from 'react'
 import { updateUserStatus } from '../redux/store'
 import useAuth from '../hooks/use-auth'
-import { Flex, Select, Space } from 'antd';
+import { Flex, Select } from 'antd';
 
 const User = memo(({ ledId, name, status, dispatch }) => {
 

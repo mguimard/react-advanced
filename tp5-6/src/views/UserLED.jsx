@@ -17,8 +17,8 @@ const getLedColor = (status, state) => {
 
 const UserLED = memo(({ ledId, status, state }) => {
     return (
-        <Avatar style={{ backgroundColor: getLedColor(status, state), verticalAlign: 'middle' }} size="large">
-            {ledId}
+        <Avatar data-testid="led" style={{ backgroundColor: getLedColor(status, state), verticalAlign: 'middle' }} size="large">
+            <span data-testid="led_name">{ledId}</span>
         </Avatar>
     )
 })
