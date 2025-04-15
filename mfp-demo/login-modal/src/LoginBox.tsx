@@ -1,12 +1,17 @@
-export default function LoginBox({ title }: { title: string }) {
+export default function LoginBox({ name }: { name: string }) {
+  const doLogin = () => {
+    // call some API..
+    // then update the context
+  };
+
   return (
     <>
       <div>
-        <p>{title}</p>
+        <p>{name}</p>
         <input type="text" placeholder="Login" />
         <br />
         <input type="password" />
-        <button>Login</button>
+        <button onClick={doLogin}>Login</button>
       </div>
     </>
   );

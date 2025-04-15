@@ -10,6 +10,7 @@ export default defineConfig({
       filename: "remoteEntry.js",
       exposes: {
         "./LoginBox": "./src/LoginBox",
+        "./LoggedInMessage": "./src/LoggedInMessage",
       },
       shared: ["react", "react-dom"],
     }),
