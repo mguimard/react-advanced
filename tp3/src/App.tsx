@@ -80,11 +80,11 @@ function ArrayTest() {
 }
 
 function ReducerTest() {
-  const [text, dispatch] = useReducer(capitalizeReducer, "");
+  const [text, capitalize] = useReducer(capitalizeReducer, "");
 
   return (
     <>
-      <input type="text" value={text} onChange={(e) => dispatch(e.target.value)} />
+      <input type="text" value={text} onChange={(e) => capitalize(e.target.value)} />
       <p>{text}</p>
     </>
   );

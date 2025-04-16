@@ -10,5 +10,6 @@ export default function useArray<T>(arr: T[]): [T[], (t: T) => void, () => void]
   const clear = useCallback(() => {
     setState(() => []);
   }, []);
+
   return [state, push, clear];
 }

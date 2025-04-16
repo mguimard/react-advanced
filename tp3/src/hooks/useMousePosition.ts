@@ -14,5 +14,5 @@ export default function useMousePosition(): { x: number; y: number } {
     };
   }, [mouseMoveHandler]);
 
-  return { x: pos.x, y: pos.y };
+  return pos;
 }
