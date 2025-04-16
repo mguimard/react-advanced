@@ -1,43 +1,18 @@
-import { useState } from "react";
+import { ChangeEvent, useRef } from "react";
 import "./App.css";
-import Child from "./Child";
 
 function App() {
-  console.log("App");
-  const [value, setValue] = useState(0);
-  const [users, setUsers] = useState(["alice", "bob", "joe"]);
+  const value = useRef("");
 
-  const increment = () => {
-    /* setValue(value + 1);
-    setValue(value + 1);
-    setValue(value + 1);
-    setValue(value + 1);
-    setValue(value + 1); // version avec variable
-*/
-
-    // version avec function
-    setValue((prev) => {
-      return prev + 1;
-    });
-
-    setValue((prev) => {
-      return prev + 1;
-    });
-
-    setValue(value + 1);
-  };
-
-  const onRemove = (user: string) => {
-    setUsers(users.filter((u) => u !== user));
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    console.log("handle change", e.target.value);
+    value.current = e.target.value;
   };
 
   return (
     <>
-      <p>{value}</p>
-      <button onClick={increment}>Click me</button>
-      {users.map((user) => (
-        <Child key={user} name={user} removeHandler={onRemove} />
-      ))}
+      <input type="text" onChange={handleChange} />
+      <p>{value.current}</p>
     </>
   );
 }
