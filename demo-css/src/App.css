@@ -1,0 +1,38 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.my-div p {
+  transition: all 2s linear;
+}
+
+.my-div p.animation1 {
+  color: red;
+}
+
+.my-div p.animation2 {
+  animation: my_animation 2s ease-in;
+}
+
+@keyframes my_animation {
+  from {
+    opacity: 0;
+    width: 20px;
+  }
+
+  to {
+    opacity: 1;
+    width: 200px;
+  }
+}
+
+.my-list p {
+  transition: transform 1s ease-in;
+}
+
+.my-list p.animate {
+  transform: rotate(1080deg);
+}

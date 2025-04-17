@@ -28,12 +28,14 @@ const renderPage = (page) => {
 
 function App() {
   const [page, setPage] = useState("home");
+  const [data, setData] = useState("something");
 
   const handlePageChange = useCallback((e) => setPage(e.target.value), []);
 
   return (
     <>
-      <Nav handlePageChange={handlePageChange} />
+      {data}
+      <Nav handlePageChange={handlePageChange} setData={setData} />
       <hr />
       <NavV2 handlePageChange={handlePageChange} />
       <hr />

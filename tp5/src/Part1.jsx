@@ -9,10 +9,10 @@ const initialItems = new Array(30_000_000).fill(0).map((i, index) => {
 });
 
 function Part1() {
-  let [count, setCount] = useState(0);
-  let [items] = useState(initialItems);
+  const [count, setCount] = useState(0);
+  const [items] = useState(initialItems);
 
-  let selectedItem = useMemo(() => items.find((i) => i.isSelected), [items]);
+  const selectedItem = useMemo(() => items.find((i) => i.isSelected), [items]);
 
   return (
     <>

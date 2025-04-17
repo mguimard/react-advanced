@@ -2,7 +2,7 @@ import { memo } from "react";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 
-const Nav = memo(({ handlePageChange }) => {
+const Nav = memo(({ handlePageChange, setData }) => {
   return (
     <>
       <select onChange={handlePageChange}>
@@ -10,6 +10,7 @@ const Nav = memo(({ handlePageChange }) => {
         <option value="contact">Contact</option>
         <option value="about">About</option>
       </select>
+      <button onClick={() => setData("clicked")}>Click me</button>
     </>
   );
 });
