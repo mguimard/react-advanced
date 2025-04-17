@@ -1,0 +1,23 @@
+#root {
+  width: 100%;
+  padding: 10px;
+}
+
+.collapsable-items {
+  width: 100%;
+  border: 1px solid white;
+}
+
+.collapsable-item:not(:last-child) {
+  border-bottom: 1px solid white;
+}
+
+.collapsable-item-header {
+  cursor: pointer;
+  font-weight: bold;
+  padding: 10px;
+}
+
+.collapsable-item-content {
+  padding: 0 10px;
+}
