@@ -1,0 +1,30 @@
+.search-input {
+    width: 5rem;
+    transition: width 300ms, border-color 300ms, box-shadow 300ms;
+    border-radius: 4px;
+    padding: 10px;
+    border: 1px solid #4d1fd9;
+
+    &:focus {
+        width: 20rem;
+        outline: none;
+        border: 1px solid #547ad1;
+        box-shadow: 0 0 0 2px #4d1fd9;
+    }
+}
+
+.demo-button {
+    transition: all 300ms;
+    border-radius: 4px;
+    padding: 10px;
+    cursor: pointer;
+    border: 1px solid #547ad1;
+    background-color: #fff;
+    color: #4d1fd9;
+
+    &:hover {
+        border: 1px solid #547ad1;
+        background-color: #4d1fd9;
+        color: #fff;
+    }
+}

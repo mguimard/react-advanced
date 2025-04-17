@@ -1,0 +1,76 @@
+@keyframes modal-open {
+    from {
+        background: rgba(0, 0, 0, 0.0);
+    }
+
+    to {
+        background: rgba(0, 0, 0, 0.8);
+    }
+}
+
+@keyframes modal-close {
+    from {
+        background: rgba(0, 0, 0, 0.8);
+    }
+
+    to {
+        background: rgba(0, 0, 0, 0.0);
+    }
+}
+
+.modal-backdrop {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100vw;
+    height: 100vh;
+    transition: all 1s;
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.8);
+    animation: modal-open forwards 500ms;
+
+    &.removing {
+        animation: modal-close forwards 500ms;
+    }
+}
+
+
+@keyframes modal-content-open {
+    from {
+        top: -50%;
+    }
+
+    to {
+        top: 50%;
+    }
+}
+
+@keyframes modal-content-close {
+    from {
+        top: 50%;
+    }
+
+    to {
+        top: -50%;
+    }
+
+}
+
+.modal {
+    position: fixed;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50vh;
+    border-radius: 12px;
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    padding: 0 25px 20px 25px;
+    animation: modal-content-open forwards 500ms;
+}
+
+.modal-backdrop.removing .modal {
+    animation: modal-content-close forwards 500ms;
+}

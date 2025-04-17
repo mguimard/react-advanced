@@ -16,8 +16,40 @@
   cursor: pointer;
   font-weight: bold;
   padding: 10px;
+  transition: margin-left 64ms ease-in;
 }
 
 .collapsable-item-content {
   padding: 0 10px;
+}
+
+.collapsable-item-header:hover {
+  margin-left: 10px;
+}
+
+.collapsable-item.opened .collapsable-item-header {
+  color: aqua;
+}
+
+.collapsable-item-header span {
+  transition: transform 1s ease, color 1s ease;
+  display: inline-block;
+}
+
+.collapsable-item.opened span {
+  transform: rotate(90deg);
+  color: #f105ff;
+}
+
+.collapsable-item .collapsable-item-content {
+  transform: scaleY(0);
+  max-height: 0;
+
+  overflow: hidden;
+  transition: all 200ms ease;
+}
+
+.collapsable-item.collapsable-item.opened .collapsable-item-content {
+  max-height: 200px;
+  transform: scaleY(100%);
 }

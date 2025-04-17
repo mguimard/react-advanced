@@ -1,0 +1,4 @@
+p.my-fade {
+    transition: all 1s linear;
+    opacity: 0;
+}

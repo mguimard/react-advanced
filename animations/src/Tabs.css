@@ -1,0 +1,39 @@
+ul {
+    list-style: none;
+}
+
+li {
+    display: inline-block;
+    margin: 10px;
+    width: 100px;
+    height: 48px;
+    align-content: center;
+    border: 1px solid #2faced;
+    text-align: center;
+
+    transition: all 1s;
+
+    &.active {
+        border: 1px solid red;
+        background: #0f1f27;
+        color: white;
+    }
+}
+
+.tabs {
+
+    div {
+        width: 0;
+        height: 0;
+        overflow: hidden;
+        transition: all 1s;
+        position: relative;
+        left: -100%;
+
+        &.active {
+            width: auto;
+            height: auto;
+            left: 0;
+        }
+    }
+}
