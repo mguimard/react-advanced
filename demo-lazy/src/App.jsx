@@ -1,35 +1,73 @@
-import { memo, useCallback, useState } from "react";
+import { lazy, Suspense, useState } from "react";
+import { ErrorBoundary } from "react-error-boundary";
 import "./App.css";
 
-const Pizza = memo(({ name }) => {
-  console.log("Pizza", name);
-  return <p>Je suis une pizza {name}</p>;
-});
+function fallbackRender({ error, resetErrorBoundary }) {
+  return (
+    <div role="alert">
+      <p>Something went wrong:</p>
+      <pre style={{ color: "red" }}>{error.message}</pre>
+      <button onClick={resetErrorBoundary}>Retry</button>
+    </div>
+  );
+}
 
-const handleClick = () => {
-  console.log("hello");
-};
+function LoadingIndicator() {
+  return <p>please wait.....</p>;
+}
 
-function ShowPizzas() {
+function Todos({ data }) {
+  console.log("Todos");
+  return <p>There are {data.length} todos</p>;
+}
+
+async function fetchTodos() {
+  // Simulate an error
+  if (Math.random() > 0.5) throw Error("random error");
+
+  const res = await fetch("https://jsonplaceholder.typicode.com/todos");
+
+  if (res.status !== 200) {
+    console.log(res);
+    throw Error(`Request failed with error code ${res.status}`);
+  } else {
+    const data = await res.json();
+    return { default: () => <Todos data={data} /> };
+  }
+}
+
+function withDataLoading(asyncFn) {
+  return function (props) {
+    const Component = lazy(asyncFn);
+    return (
+      <Suspense fallback={<LoadingIndicator />}>
+        <Component {...props} />
+      </Suspense>
+    );
+  };
+}
+
+function withErrorBoundaries(SomeComponent) {
+  return function (props) {
+    const Component = SomeComponent;
+    return (
+      <ErrorBoundary fallbackRender={fallbackRender}>
+        <Component {...props} />
+      </ErrorBoundary>
+    );
+  };
+}
+
+function App() {
   const [show, setShow] = useState(false);
-
-  const [pizzas, setPizzas] = useState(["reine", "chorizo"]);
-
-  //const handleClick = useCallback(() => console.log("hello"), []);
-  //const handleClick = () => console.log("hello");
+  const LazyTodos = withErrorBoundaries(withDataLoading(fetchTodos));
 
   return (
     <>
-      {pizzas.map((pizza) => (
-        <Pizza key={pizza} name={pizza} onClick={handleClick} />
-      ))}
-      <button onClick={() => setShow(!show)}>Toggle</button>{" "}
-      <button onClick={() => setPizzas([...pizzas, "saumon"])}>Add Pizza</button>{" "}
+      {show && <LazyTodos />}
+      <button onClick={() => setShow(!show)}>Show/hide</button>
     </>
   );
 }
 
-function App() {
-  return <ShowPizzas></ShowPizzas>;
-}
 export default App;
